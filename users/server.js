@@ -9,6 +9,6 @@ app.use('/graphql', expressGraphQL({
     schema
 }));
 
-app.listen(4000, () => {
-   console.log('Listening');
+app.listen(port = 4000, () => {
+   console.log(`Listening on port:  ${port}`);
 });
