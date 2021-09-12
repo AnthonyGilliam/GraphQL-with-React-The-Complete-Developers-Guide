@@ -1,0 +1,45 @@
+{
+  "name": "lyrical",
+  "version": "1.0.0",
+  "description": "Starter point for a graphQL course",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/StephenGrider/Lyrical-GraphQL"
+  },
+  "scripts": {
+    "dev": "nodemon index.js --ignore client"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/client": "^3.3.4",
+    "axios": "^0.21.0",
+    "body-parser": "^1.19.0",
+    "connect-mongo": "^3.2.0",
+    "css-loader": "^5.0.1",
+    "express": "^4.17.1",
+    "express-graphql": "^0.12.0",
+    "express-session": "^1.17.1",
+    "graphql": "^15.4.0",
+    "html-webpack-plugin": "^4.5.0",
+    "lodash": "^4.17.20",
+    "mongoose": "^5.11.7",
+    "nodemon": "^2.0.6",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "react": "^17.0.1",
+    "react-apollo": "^3.1.5",
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.3.0",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.10.1",
+    "webpack-dev-middleware": "^4.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.10",
+    "@babel/preset-react": "^7.12.10",
+    "babel-loader": "^8.2.2"
+  }
+}
