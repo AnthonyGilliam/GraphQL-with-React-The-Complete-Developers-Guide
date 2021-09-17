@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import { HashRouter, Route } from "react-router-dom";
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import {HashRouter, Route} from "react-router-dom";
+import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
 import SongList from './components/SongList';
+import SongCreate from './components/SongCreate';
 
 const client = new ApolloClient({
     uri: "/graphql",
@@ -10,14 +11,17 @@ const client = new ApolloClient({
 });
 
 const Root = () => {
-  return (
-      <ApolloProvider client={client}>
-          <SongList />
-      </ApolloProvider>
-  )
+    return (
+        <ApolloProvider client={client}>
+            <HashRouter basename="/" hashType="slash">
+                <Route exact path="/" component={SongList}/>
+                <Route exact path="/song/new" component={SongCreate}/>
+            </HashRouter>
+        </ApolloProvider>
+    )
 };
 
 ReactDOM.render(
-  <Root />,
-  document.querySelector('#root')
+    <Root/>,
+    document.querySelector('#root')
 );

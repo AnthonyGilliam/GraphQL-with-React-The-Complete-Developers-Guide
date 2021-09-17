@@ -17,11 +17,15 @@ const SongList = () => {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
     return (
-        data.songs.map((song, index) => (
-            <div key={index}>
-                {song.title}
-            </div>
-        ))
+        <div className="container">
+            <ul className="collection">
+                {data.songs.map((song, index) => (
+                    <li key={index} className="collection-item">
+                        {song.title}
+                    </li>
+                ))}
+            </ul>
+        </div>
     );
 }
 
