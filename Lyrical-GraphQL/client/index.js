@@ -15,7 +15,7 @@ const Root = () => {
         <ApolloProvider client={client}>
             <HashRouter basename="/" hashType="slash">
                 <Route exact path="/" component={SongList}/>
-                <Route exact path="/song/new" component={SongCreate}/>
+                <Route exact path="/songs/new" component={SongCreate}/>
             </HashRouter>
         </ApolloProvider>
     )

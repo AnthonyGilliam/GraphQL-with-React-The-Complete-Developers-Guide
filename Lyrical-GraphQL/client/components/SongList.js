@@ -1,30 +1,39 @@
 import React, {useEffect} from 'react';
-import {gql, useQuery} from '@apollo/client';
-
-const GET_SONGS = gql`
-    query GetSongs {
-        songs {
-            title
-        }
-    }
-`;
+import {useQuery, useMutation} from '@apollo/client';
+import {Link} from 'react-router-dom';
+import {GET_SONGS, DELETE_SONG} from '../queries/songs';
 
 const SongList = () => {
-    const {loading, error, data} = useQuery(GET_SONGS);
+    const {loading: getSongsLoading, error: getSongsError, data: getSongsData} = useQuery(GET_SONGS);
+    const [deleteSong, {loading: deleteSongsLoading, error: deleteSongsError, data: deleteSongsData}] =
+        useMutation(DELETE_SONG, {
+            refetchQueries: [{query: GET_SONGS}]
+        });
     useEffect(() => {
-        console.log("Queried State:", loading, error, data);
-    }, [loading, error, data]);
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error.message}</p>;
+        console.log('Queried State:', getSongsLoading, getSongsError, getSongsData);
+    }, [getSongsLoading, getSongsError, getSongsData]);
+    if (getSongsLoading) return <p>getSongsLoading...</p>;
+    if (getSongsError) return <p>getSongsError: {getSongsError.message}</p>;
     return (
         <div className="container">
             <ul className="collection">
-                {data.songs.map((song, index) => (
+                {getSongsData.songs.map(({id, title}, index) => (
                     <li key={index} className="collection-item">
-                        {song.title}
+                        {title}
+                        <i
+                            className="material-icons"
+                            onClick={() => {
+                                deleteSong({variables: {id}})
+                            }}
+                        >
+                            delete
+                        </i>
                     </li>
                 ))}
             </ul>
+            <Link to="/songs/new" className="btn-floating btn-large red right">
+                <i className="material-icons">add</i>
+            </Link>
         </div>
     );
 }
