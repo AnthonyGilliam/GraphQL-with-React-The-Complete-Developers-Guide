@@ -4,6 +4,8 @@ import {HashRouter, Route} from "react-router-dom";
 import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
 import SongList from './components/SongList';
 import SongCreate from './components/SongCreate';
+import SongDetail from './components/SongDetail';
+import './style/style.css';
 
 const client = new ApolloClient({
     uri: "/graphql",
@@ -16,6 +18,7 @@ const Root = () => {
             <HashRouter basename="/" hashType="slash">
                 <Route exact path="/" component={SongList}/>
                 <Route exact path="/songs/new" component={SongCreate}/>
+                <Route exact path="/songs/:id" component={SongDetail}/>
             </HashRouter>
         </ApolloProvider>
     )
